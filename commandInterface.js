@@ -37,7 +37,6 @@ class commandInterface {
 
   executeCommand(command) {
     command = command.toUpperCase();
-
     switch (command) {
       case 'L':
         this.robot.changeDirection(90);
@@ -54,6 +53,24 @@ class commandInterface {
     }
   }
 
-
+  initializeExcecution(commands, done){
+    var errorIndices = [];
+    var isValid = true;
+    
+    commands.forEach((command, index) => {
+      validCommand = this.robot.isValidCommand(command)
+      if(!validCommand){
+        isValid = false;
+        errorIndices.push(index);
+      }
+    });
+    
+    if(!isValid){
+      done(`The followwing indexes of the input commands are invalid' - ${errorIndices}`);
+      return;
+    }
+    commands.forEach(executeCommand(command));
+    done();
+  }
 
 }
