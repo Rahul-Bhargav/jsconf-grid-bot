@@ -12,12 +12,20 @@ function continueExecution(isSuccess) {
 
   var gridSize = inputManager.getGridSize();
   var gridX = parseInt(gridSize.x);
-  var gridY = parseInt(gridSize.y)
+  var gridY = parseInt(gridSize.y);
+  if(isNaN(gridX)||isNaN(gridY)){
+    console.log('Invalid Grid Inputs');
+    return;
+  }
   var grid = new Grid(gridX, gridY);
 
   var initialBotInput = inputManager.getBotInputs();
   var initialX = parseInt(initialBotInput.x);
   var initialY = parseInt(initialBotInput.y);
+  if(isNaN(initialX)||isNaN(initialX)){
+    console.log('Invalid Bot Position Input');
+    return;
+  }
   console.log(initialX,initialY,initialBotInput.direction);
 
   var robot = new Robot(initialX, initialY, initialBotInput.direction, ['L', 'M', 'R']);
