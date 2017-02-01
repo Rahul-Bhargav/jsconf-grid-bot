@@ -20,7 +20,7 @@ class Robot {
   }
 
   changeDirection(deltaDirection) {
-    tempDirection = this.direction;
+    var tempDirection = this.direction;
     tempDirection += deltaDirection;
     if (tempDirection < 0) {
       tempDirection = 360 - tempDirection;
@@ -29,6 +29,7 @@ class Robot {
       tempDirection = tempDirection - 360;
     }
     this.direction = tempDirection;
+    console.log(this.direction);
   }
 
   getPosition() {
