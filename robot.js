@@ -19,10 +19,25 @@ class Robot {
     this.positionY = positionY;
   }
 
-  changeDirection(direction) {
-    this.direction = direction
+  changeDirection(deltaDirection) {
+    tempDirection = this.direction;
+    tempDirection += deltaDirection;
+    if (tempDirection < 0) {
+      tempDirection = 360 - tempDirection;
+    }
+    if (tempDirection >= 360) {
+      tempDirection = tempDirection - 360;
+    }
+    this.direction = tempDirection;
   }
 
+  getPosition() {
+    return { x: this.positionX, y: this.positionY }
+  }
+
+  getDirection() {
+    return this.direction;
+  }
 }
 
 module.exports = Robot;
