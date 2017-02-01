@@ -1,0 +1,1 @@
+Jsconf Grid Bot is a Node.js bot that takes commands and executes them to move on a floor(grid).
