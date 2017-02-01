@@ -2,9 +2,8 @@ fs = require('fs');
 path = require('path');
 
 function readAsync(inputPath, callback) {
-  var lineCount = 0;
   if (!(typeof inputPath === 'string')) {
-    return `Please provide an inputPath`;
+     callback(`Please provide an inputPath`);
   }
   fs.exists(inputPath, (exists) => {
     if (!exists) {
