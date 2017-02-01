@@ -1,4 +1,4 @@
-class commandInterface {
+class CommandInterface {
   constructor(robot, grid) {
     this.robot = robot;
     this.grid = grid;
@@ -72,5 +72,5 @@ class commandInterface {
     commands.forEach(executeCommand(command));
     done();
   }
-
 }
+module.exports = CommandInterface;
