@@ -4,27 +4,38 @@ class FileInputManager {
     this.inputPath = inputPath;
   }
 
-  fetchData() {
-    var recieveData;
+  fetchData(done) {
+    var that = this;
     var isSuccess = true;
     fileReader(this.inputPath, (err, data) => {
       if (err) {
         console.log(err);
         isSuccess = false;
+        done(isSuccess);
       } else {
-        recieveData = data;
+        that.dataArray = data.split('\n');
+        done(isSuccess);
       }
     });
-    if (!isSuccess)
-      return false;
-
-    this.dataArray = recieveData.split('\n');
-    return true;
   }
 
-  getGridSize(){
-    var sizeArray = dataArray.split(' ');
-    return { x: sizeArray[0], y:sizeArray[1]}
+  getGridSize() {
+    var sizeArray = this.dataArray[0].split(' ');
+    return { x: sizeArray[0], y: sizeArray[1] }
+  }
+
+  getBotInputs(){
+    var botInputArray = this.dataArray[1].split(' ');
+    return {x : botInputArray[0], y : botInputArray[1], direction : botInputArray[2]}
+  }
+
+  getCommands(){
+    var commands = this.dataArray[2].split(' ');
+    var result = [];
+    commands.forEach((command)=>{
+      result.push(command[0]);
+    })
+    return result;
   }
 }
 
