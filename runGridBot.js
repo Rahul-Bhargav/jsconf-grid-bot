@@ -17,7 +17,7 @@ function createGrid() {
   return grid;
 }
 
-function createRobot() {
+function createRobot(xLimit, yLimit) {
   var initialBotInput = inputManager.getBotInputs();
   var initialX = parseInt(initialBotInput.x);
   var initialY = parseInt(initialBotInput.y);
@@ -26,7 +26,10 @@ function createRobot() {
     return false;
   }
   console.log(initialX, initialY, initialBotInput.direction);
-
+  if (initialX > xLimit || initialY > yLimit) {
+    conso.log('The initial bot position is out of bounds');
+    return false;
+  }
   var robot = new Robot(initialX, initialY, initialBotInput.direction, ['L', 'M', 'R']);
   return robot;
 }
@@ -35,10 +38,10 @@ function continueExecution(isSuccess) {
   if (!isSuccess) {
     return;
   }
-  
+
   var grid = createGrid();
   if (!grid) return;
-  var robot = createRobot();
+  var robot = createRobot(grid.xLimit, grid.yLimit);
   if (!robot) return;
 
   var commands = inputManager.getCommands();
