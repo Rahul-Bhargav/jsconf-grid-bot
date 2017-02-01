@@ -20,7 +20,7 @@ class CommandInterface {
         break;
       case 90:
         currentPosition.y += 1;
-        if (currentPosition.y === this.grid.yLimit,robotDirection)
+        if (currentPosition.y === this.grid.yLimit)
           currentPosition.y = this.grid.yLimit - 1;
         break;
       case 270:
@@ -51,6 +51,7 @@ class CommandInterface {
         console.log('Invalid command ', command);
         break;
     }
+    console.log(command,' ',{ position: this.robot.getPosition(), direction: this.robot.getCompassDirection(this.robot.getDirection()) });
   }
 
   initializeExecution(commands, done) {
@@ -70,7 +71,7 @@ class CommandInterface {
       return;
     }
     commands.forEach((command) => this.executeCommand(command));
-    done({ position: this.robot.getPosition(), direction: this.robot.getDirection() });
+    done({ position: this.robot.getPosition(), direction: this.robot.getCompassDirection(this.robot.getDirection()) });
   }
 }
 module.exports = CommandInterface;
